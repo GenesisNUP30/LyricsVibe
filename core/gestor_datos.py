@@ -48,3 +48,11 @@ def guardar_analisis(artista, titulo, letra, mood_score):
         print(f"Error al actualizar el historial: {e}")
 
     return ruta_archivo
+
+def listar_artistas():
+    """Devuelve una lista de las carpetas de artistas en la biblioteca."""
+    if not os.path.exists(config.CARPETA_BIBLIOTECA):
+        return []
+    # Solo listamos directorios
+    return [d for d in os.listdir(config.CARPETA_BIBLIOTECA) 
+            if os.path.isdir(os.path.join(config.CARPETA_BIBLIOTECA, d))]
