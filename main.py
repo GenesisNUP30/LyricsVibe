@@ -1,10 +1,9 @@
 import os
-from core.gestor_datos import inicializar_sistema, guardar_analisis
+from core.gestor_datos import inicializar_sistema, guardar_analisis, listar_artistas, analizar_biblioteca_artista
 from interfaz.entradas import capturar_portapapeles, seleccionar_archivo_local, pedir_metadatos
 from core.analizador import limpiar_texto, obtener_sentimiento, generar_tags, obtener_top_palabras
 from interfaz.visual import crear_nube_palabras, mostrar_dashboard
 from core.estadisticas import obtener_resumen_temporal
-from core.gestor_datos import listar_artistas
 
 def mostrar_menu():
     print("\n" + "="*30)
@@ -58,7 +57,43 @@ def main():
                 print("\n--- Artistas en tu Biblioteca ---")
                 for i, art in enumerate(artistas, 1):
                     print(f"{i}. {art}")
-                    # Se podria añadir lógica para analizar la carpeta entera
+                
+                # El usuario elige un artista por número
+                try:
+                    eleccion = int(input("\nElige un artista (número): "))
+                    if eleccion < 1 or eleccion > len(artistas):
+                        print("[!] Número fuera de rango.")
+                    else:
+                        artista_elegido = artistas[eleccion - 1]
+                        print(f"\n[⏳] Analizando biblioteca de {artista_elegido}...")
+
+                        # Obtener datos de toda la biblioteca del artista
+                        texto_combinado, num_canciones, mood_medio = analizar_biblioteca_artista(artista_elegido)
+
+                        if not texto_combinado:
+                            print("[!] No se encontraron canciones para este artista.")
+                        else:
+                            # Mostrar estadísticas agregadas
+                            vibe = "Positiva" if mood_medio > 0.1 else "Melancólica" if mood_medio < -0.1 else "Neutral"
+                            print(f"\n{'='*35}")
+                            print(f"  📚 Biblioteca de {artista_elegido}")
+                            print(f"{'='*35}")
+                            print(f"  🎵 Canciones guardadas : {num_canciones}")
+                            print(f"  🎭 Vibe media          : {vibe} ({mood_medio:.2f})")
+                            print(f"{'='*35}")
+
+                            # Generar nube de palabras maestra
+                            palabras_maestras = limpiar_texto(texto_combinado)
+                            top_maestro = obtener_top_palabras(palabras_maestras, top=50)
+
+                            if top_maestro:
+                                print("\n[🎨] Generando Nube Maestra de Palabras...")
+                                crear_nube_palabras(top_maestro, f"{artista_elegido}_MAESTRO")
+                            else:
+                                print("[!] No hay suficiente texto para generar la nube.")
+
+                except ValueError:
+                    print("[!] Por favor, introduce un número válido.")
 
         elif opcion == "4":
             print("\n¿Qué periodo quieres consultar?")

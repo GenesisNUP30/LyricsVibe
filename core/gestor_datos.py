@@ -56,3 +56,46 @@ def listar_artistas():
     # Solo listamos directorios
     return [d for d in os.listdir(config.CARPETA_BIBLIOTECA) 
             if os.path.isdir(os.path.join(config.CARPETA_BIBLIOTECA, d))]
+
+def analizar_biblioteca_artista(artista):
+    """
+    Lee todos los archivos .txt de un artista y devuelve:
+    - texto_combinado: toda la letra junta para generar la nube maestra
+    - num_canciones: cuántos archivos tiene guardados
+    - mood_medio: la media de mood de sus registros en el historial
+    """
+    ruta_artista = os.path.join(config.CARPETA_BIBLIOTECA, artista)
+
+    # 1. Leer todos los .txt de la carpeta del artista
+    texto_combinado = ""
+    num_canciones = 0
+
+    try:
+        archivos = [f for f in os.listdir(ruta_artista) if f.endswith(".txt")]
+        num_canciones = len(archivos)
+
+        for archivo in archivos:
+            ruta_archivo = os.path.join(ruta_artista, archivo)
+            with open(ruta_archivo, 'r', encoding='utf-8') as f:
+                texto_combinado += f.read() + " "
+
+    except Exception as e:
+        print(f"[!] Error al leer la biblioteca de {artista}: {e}")
+        return None, 0, 0.0
+
+    # 2. Calcular mood medio desde el historial.json
+    mood_medio = 0.0
+    try:
+        with open(config.ARCHIVO_HISTORIAL, 'r', encoding='utf-8') as f:
+            datos = json.load(f)
+
+        # Filtramos solo los registros de este artista
+        registros_artista = [r for r in datos if r["artista"] == artista]
+
+        if registros_artista:
+            mood_medio = sum(r["mood"] for r in registros_artista) / len(registros_artista)
+
+    except Exception as e:
+        print(f"[!] Error al leer el historial: {e}")
+
+    return texto_combinado, num_canciones, mood_medio
