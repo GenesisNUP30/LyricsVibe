@@ -34,5 +34,11 @@
         "artista": "Justin Bieber",
         "titulo": "Love Yourself",
         "mood": 0.09794238683127572
+    },
+    {
+        "fecha": "2026-04-14 00:13:16",
+        "artista": "Alan Walker",
+        "titulo": "Faded",
+        "mood": 0.06296296296296297
     }
 ]
