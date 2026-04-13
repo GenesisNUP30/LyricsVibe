@@ -15,3 +15,8 @@
 - `matplotlib`: Creación de dashboards y gráficos estadísticos.
 - `pandas`: Manejo y filtrado de grandes volúmenes de datos del historial.
 - `pyperclip`: Captura de datos en tiempo real desde el portapapeles.
+
+## ⌨️ Funcionalidades de Entrada
+- **Captura Inteligente:** Integración con el portapapeles del sistema para análisis rápido sin archivos intermedios.
+- **Explorador Nativo:** Uso de ventanas de diálogo del sistema operativo para una selección de archivos intuitiva.
+- **Normalización de Datos:** El sistema limpia y formatea automáticamente los nombres de artistas y archivos para mantener la biblioteca organizada.
