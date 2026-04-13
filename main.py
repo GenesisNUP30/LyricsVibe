@@ -1,6 +1,8 @@
 import os
 from core.gestor_datos import inicializar_sistema, guardar_analisis
 from interfaz.entradas import capturar_portapapeles, seleccionar_archivo_local, pedir_metadatos
+from core.analizador import limpiar_texto, obtener_sentimiento, generar_tags, obtener_top_palabras
+from interfaz.visual import crear_nube_palabras, mostrar_dashboard
 
 def mostrar_menu():
     print("\n" + "="*30)
@@ -25,9 +27,18 @@ def main():
             if letra:
                 artista, titulo = pedir_metadatos()
                 if artista and titulo:
-                    # Por ahora usamos un mood de 0.0 hasta que hagamos el analizador
-                    guardar_analisis(artista, titulo, letra, 0.0)
-                    print(f"\n[✓] '{titulo}' de {artista} guardado en la biblioteca.")
+                    palabras_limpias = limpiar_texto(letra)
+                    score = obtener_sentimiento(letra)
+                    top_10 = obtener_top_palabras(palabras_limpias)
+                    tags = generar_tags(score)
+                    
+                    # GUARDAR
+                    guardar_analisis(artista, titulo, letra, score)
+                    
+                    # MOSTRAR RESULTADOS
+                    print(f"\nANÁLISIS COMPLETADO: {tags}")
+                    mostrar_dashboard(score, top_10)
+                    crear_nube_palabras(top_10, artista)
 
         elif opcion == "2":
             letra = seleccionar_archivo_local()
