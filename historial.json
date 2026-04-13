@@ -40,5 +40,77 @@
         "artista": "Alan Walker",
         "titulo": "Faded",
         "mood": 0.06296296296296297
+    },
+    {
+        "fecha": "2026-04-14 00:31:28",
+        "artista": "Alan Walker",
+        "titulo": "Alone",
+        "mood": 0.9733
+    },
+    {
+        "fecha": "2026-04-14 00:32:31",
+        "artista": "Adele",
+        "titulo": "Easy on Me",
+        "mood": 0.9755
+    },
+    {
+        "fecha": "2026-04-14 00:36:08",
+        "artista": "Luis Fonsi",
+        "titulo": "Despacito",
+        "mood": 1.0
+    },
+    {
+        "fecha": "2026-04-14 00:37:09",
+        "artista": "Daddy Yankee",
+        "titulo": "Con Calma",
+        "mood": 1.0
+    },
+    {
+        "fecha": "2026-04-14 00:37:57",
+        "artista": "Aitana",
+        "titulo": "Vas a Quedarte",
+        "mood": -1.0
+    },
+    {
+        "fecha": "2026-04-14 00:38:58",
+        "artista": "Bad Gyal",
+        "titulo": "FIEBRE",
+        "mood": -0.5
+    },
+    {
+        "fecha": "2026-04-14 00:39:47",
+        "artista": "Justin Bieber",
+        "titulo": "Sorry",
+        "mood": 0.9182
+    },
+    {
+        "fecha": "2026-04-14 00:41:54",
+        "artista": "Justin Bieber",
+        "titulo": "Sorry",
+        "mood": -1.0
+    },
+    {
+        "fecha": "2026-04-14 00:42:31",
+        "artista": "Daddy Yankee",
+        "titulo": "Con Calma",
+        "mood": 1.0
+    },
+    {
+        "fecha": "2026-04-14 00:43:28",
+        "artista": "Beret",
+        "titulo": "Lo sineto",
+        "mood": -1.0
+    },
+    {
+        "fecha": "2026-04-14 00:43:49",
+        "artista": "Beret",
+        "titulo": "Lo siento",
+        "mood": -1.0
+    },
+    {
+        "fecha": "2026-04-14 00:45:01",
+        "artista": "Alan Walker",
+        "titulo": "Faded",
+        "mood": -1.0
     }
 ]
