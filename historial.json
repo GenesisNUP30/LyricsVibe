@@ -112,5 +112,17 @@
         "artista": "Alan Walker",
         "titulo": "Faded",
         "mood": -1.0
+    },
+    {
+        "fecha": "2026-04-14 00:47:32",
+        "artista": "Adele",
+        "titulo": "Easy on Me",
+        "mood": 1.0
+    },
+    {
+        "fecha": "2026-04-14 00:48:08",
+        "artista": "Bad Gyal",
+        "titulo": "FIEBRE",
+        "mood": 0.0
     }
 ]

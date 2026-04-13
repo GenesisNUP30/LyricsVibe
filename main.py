@@ -46,8 +46,16 @@ def main():
             if letra:
                 artista, titulo = pedir_metadatos()
                 if artista and titulo:
-                    guardar_analisis(artista, titulo, letra, 0.0)
-                    print(f"\n[✓] Archivo guardado correctamente.")
+                    palabras_limpias = limpiar_texto(letra)
+                    score = obtener_sentimiento(letra)
+                    top_10 = obtener_top_palabras(palabras_limpias)
+                    tags = generar_tags(score)
+
+                    guardar_analisis(artista, titulo, letra, score)
+
+                    print(f"\nANÁLISIS COMPLETADO: {tags}")
+                    mostrar_dashboard(score, top_10)
+                    crear_nube_palabras(top_10, artista)
 
         elif opcion == "3":
             artistas = listar_artistas()
