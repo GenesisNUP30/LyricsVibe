@@ -10,5 +10,29 @@
         "artista": "Adele",
         "titulo": "Hello",
         "mood": -0.14109195402298852
+    },
+    {
+        "fecha": "2026-04-13 23:34:50",
+        "artista": "Bad Gyal",
+        "titulo": "FIEBRE",
+        "mood": 0.0
+    },
+    {
+        "fecha": "2026-04-13 23:35:49",
+        "artista": "Bad Gyal",
+        "titulo": "FIEBRE",
+        "mood": -0.09774774774774776
+    },
+    {
+        "fecha": "2026-04-13 23:37:15",
+        "artista": "Justin Bieber",
+        "titulo": "Sorry",
+        "mood": -0.26667811355311355
+    },
+    {
+        "fecha": "2026-04-13 23:38:13",
+        "artista": "Justin Bieber",
+        "titulo": "Love Yourself",
+        "mood": 0.09794238683127572
     }
 ]
