@@ -1,6 +1,7 @@
 from textblob import TextBlob
 import re
 from collections import Counter
+from deep_translator import GoogleTranslator
 
 def limpiar_texto(texto):
     """Limpia la letra de signos de puntuación y palabras comunes."""
@@ -18,11 +19,23 @@ def limpiar_texto(texto):
 
 def obtener_sentimiento(texto):
     """
-    Analiza la letra y devuelve un puntaje de -1 (muy triste) a 1 (muy alegre).
+    Traduce el texto al inglés si es necesario y analiza el sentimiento.
+    Esto permite que TextBlob funcione con precisión total.
     """
-    analisis = TextBlob(texto)
-    # La polaridad indica el sentimiento
-    return analisis.sentiment.polarity
+    try:
+        # 1. Traducir al inglés (GoogleTranslator es gratuito y no necesita API Key)
+        # Limitamos a los primeros 2000 caracteres para que sea rápido
+        texto_en = GoogleTranslator(source='auto', target='en').translate(texto[:2000])
+        
+        # 2. Analizar con TextBlob (ahora en inglés, su lenguaje nativo)
+        analisis = TextBlob(texto_en)
+        score = analisis.sentiment.polarity
+        
+        return score
+    except Exception as e:
+        print(f"Error en traducción/análisis: {e}")
+        # Si falla la traducción, intentamos analizar el original por si acaso
+        return TextBlob(texto).sentiment.polarity
 
 def generar_tags(score):
     """Asigna etiquetas automáticas basadas en el puntaje de sentimiento."""
